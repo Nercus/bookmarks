@@ -1,18 +1,15 @@
 <template>
   <UApp>
-    <UHeader>
-      <template #left>
-        <NuxtLink
-          to="/"
-          class="flex items-center">
-          <AppLogo class="h-14 aspect-square" />
-          <h1 class="font-black text-3xl tracking-wide">
-            Nerc's Bookmarks
-          </h1>
-        </NuxtLink>
+    <UHeader :toggle="false">
+      <template #title>
+        <AppLogo class="h-14 aspect-square" />
+        <h1 class="font-black text-3xl tracking-wide">
+          Nerc's Bookmarks
+        </h1>
       </template>
-
-      <template #right />
+      <template #right>
+        <UColorModeButton />
+      </template>
     </UHeader>
 
     <UMain>
@@ -21,9 +18,7 @@
   </UApp>
 </template>
 
-<script setup>
-import AppLogo from './components/AppLogo.vue'
-
+<script setup lang="ts">
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
