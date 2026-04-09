@@ -1,37 +1,36 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
+    '@vueuse/nuxt',
     '@nuxt/eslint',
     '@nuxt/ui',
     '@formkit/auto-animate/nuxt',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
   ],
   devtools: {
-    enabled: true
+    enabled: true,
   },
-
   css: ['~/assets/css/main.css'],
-
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: true },
   },
   compatibilityDate: '2025-01-15',
   typescript: {
     strict: true,
-    typeCheck: true
   },
+
   eslint: {
     config: {
-      standalone: false
-    }
+      standalone: false,
+    },
   },
   icon: {
     mode: 'svg',
-    collections: ['fluent']
+    collections: ['fluent'],
   },
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,
-    redirect: false
-  }
+    redirect: false,
+  },
 })
