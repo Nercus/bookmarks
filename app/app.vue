@@ -13,22 +13,22 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' },
+    { rel: 'icon', href: '/img/logo.png' },
   ],
   htmlAttrs: {
     lang: 'en',
   },
 })
 
-const title = 'Nuxt Starter Template'
-const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
+const title = 'Bookmarks'
+const description = 'A simple way I use to save and organize my bookmarks. Built with Nuxt 3 and Supabase.'
 
 useSeoMeta({
   title,
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
+  ogImage: '/img/og-image.png',
   twitterCard: 'summary_large_image',
 })
 </script>
