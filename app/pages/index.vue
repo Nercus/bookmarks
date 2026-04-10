@@ -2,7 +2,7 @@
   <UDashboardGroup>
     <UDashboardPanel>
       <template #header>
-        <UDashboardNavbar title="Bookmarks">
+        <UDashboardNavbar title="Bookmarks" :toggle="false">
           <template #leading>
             <AppLogo class="size-10" />
           </template>
