@@ -1,3 +1,3 @@
 <template>
-  <img src="@/assets/logo.png" alt="App Logo" class="app-logo">
+  <img src="/img/logo.png" alt="App Logo" class="app-logo">
 </template>
