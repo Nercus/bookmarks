@@ -3,7 +3,7 @@
     <UButton label="Nerc's Login" color="neutral" variant="subtle" @click="popoverOpen = true" />
     <template #content>
       <UFieldGroup class="p-4 w-full max-w-xl">
-        <UInput v-model="email" :loading="loading" />
+        <UInput v-model="email" :loading="loading" @keydown.enter="signInWithOtp" />
         <UButton icon="lucide:arrow-right" color="neutral" variant="subtle" :disabled="loginDisabled || loading" @click="signInWithOtp" />
       </UFieldGroup>
     </template>
