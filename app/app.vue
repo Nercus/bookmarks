@@ -1,17 +1,6 @@
 <template>
   <UApp>
-    <UHeader :toggle="false">
-      <template #title>
-        <AppLogo class="h-14 aspect-square" />
-        <h1 class="font-black text-3xl tracking-wide">
-          Nerc's Bookmarks
-        </h1>
-      </template>
-      <template #right>
-        <UColorModeButton />
-      </template>
-    </UHeader>
-
+    <NuxtLoadingIndicator />
     <UMain>
       <NuxtPage />
     </UMain>
