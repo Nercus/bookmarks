@@ -1,5 +1,5 @@
 <template>
-  <UBlogPost :to="props.url" target="_blank" :title="props.title" :description="props.description" :image="props.image" :date="props.date" :badge="tagData" />
+  <UBlogPost :to="props.url" target="_blank" :title="props.title" :description="props.description" :image="imageUrl" :date="props.date" :badge="tagData" />
 </template>
 
 <script setup lang="ts">
@@ -13,6 +13,21 @@ const props = defineProps<{
   url: string
   tag: string
 }>()
+
+const fallback = '/img/og_fallback.png'
+const imageUrl = ref(props.image)
+
+watch(() => props.image, (src) => {
+  if (!import.meta.client) return
+  const img = new window.Image()
+  img.onload = () => {
+    imageUrl.value = src
+  }
+  img.onerror = () => {
+    imageUrl.value = fallback
+  }
+  img.src = src
+}, { immediate: true })
 
 const tagStyleMap = {
   'Art': { color: 'primary', variant: 'solid' },
