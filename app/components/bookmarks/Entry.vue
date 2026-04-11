@@ -16,17 +16,17 @@ const props = defineProps<{
 
 const tagStyleMap = {
   'Art': { color: 'primary', variant: 'solid' },
-  'Assets': { color: 'secondary', variant: 'solid' },
-  'Coding': { color: 'success', variant: 'solid' },
-  'Portfolio': { color: 'info', variant: 'solid' },
-  'Tool': { color: 'warning', variant: 'solid' },
-  'Typography': { color: 'primary', variant: 'outline' },
-  'UI/UX': { color: 'error', variant: 'solid' },
-  'Webdev': { color: 'secondary', variant: 'outline' },
+  'Assets': { color: 'success', variant: 'solid' },
+  'Coding': { color: 'warning', variant: 'solid' },
+  'Portfolio': { color: 'error', variant: 'solid' },
+  'Tool': { color: 'primary', variant: 'subtle' },
+  'Typography': { color: 'success', variant: 'subtle' },
+  'UI/UX': { color: 'warning', variant: 'subtle' },
+  'Webdev': { color: 'error', variant: 'subtle' },
 } as const
 
 const tagData = computed<BadgeProps>(() => {
-  const style = tagStyleMap[props.tag as keyof typeof tagStyleMap] || { color: 'default', variant: 'outline' }
+  const style = tagStyleMap[props.tag as keyof typeof tagStyleMap] || { color: 'default', variant: 'subtle' }
   return {
     label: props.tag as string,
     color: style.color,
