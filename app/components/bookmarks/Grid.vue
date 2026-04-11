@@ -5,6 +5,9 @@
       :description="bm.og_description || ''"
       :image="bm.og_image || '/img/og_fallback.png'" :date="bm.created_at" :url="bm.url" :tag="bm.tag" />
   </UBlogPosts>
+  <UEmpty
+    v-if="!loading && bookmarksToShow.length === 0" title="No bookmarks found" icon="i-lucide-frown"
+    description="Try adjusting your search or filter to find what you're looking for." />
 </template>
 
 <script setup lang="ts">
