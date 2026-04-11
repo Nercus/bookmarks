@@ -13,14 +13,15 @@
         </UDashboardNavbar>
         <UDashboardToolbar>
           <template #default>
-            <div class="flex justify-center items-center w-full h-full">
+            <div class="flex flex-row flex-wrap justify-between items-center gap-2 py-1 w-full h-full">
               <BookmarksSearchBar v-model:search="searchString" :loading="loading" />
+              <BookmarksTagFilter v-model="tagFilter" />
             </div>
           </template>
         </UDashboardToolbar>
       </template>
       <template #body>
-        <BookmarksGrid v-model="loading" :search="searchString" />
+        <BookmarksGrid v-model="loading" :search="searchString" :tag-filter="tagFilter" />
       </template>
     </UDashboardPanel>
   </UDashboardGroup>
@@ -28,5 +29,11 @@
 
 <script setup lang="ts">
 const searchString = ref('')
+const tagFilter = ref<string>('')
 const loading = ref(false)
+
+watch(searchString, (newValue) => {
+  if (newValue === '') return
+  tagFilter.value = ''
+})
 </script>

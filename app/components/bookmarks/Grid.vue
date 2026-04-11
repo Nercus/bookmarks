@@ -10,6 +10,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   search: string
+  tagFilter: string
 }>()
 
 const loading = defineModel({
@@ -72,6 +73,10 @@ watch(() => props.search, (newValue) => {
 
 const bookmarksToShow = computed(() => {
   if (props.search === '') {
+    if (props.tagFilter) {
+      const filteredByTag = allBookmarks.value?.filter(bm => bm.tag === props.tagFilter)
+      return filteredByTag || []
+    }
     return allBookmarks.value || []
   }
   else {

@@ -14,6 +14,8 @@ const props = defineProps<{
   tag: string
 }>()
 
+const { getTagStyle } = useTag()
+
 const fallback = '/img/og_fallback.png'
 const imageUrl = ref(props.image)
 
@@ -29,23 +31,7 @@ watch(() => props.image, (src) => {
   img.src = src
 }, { immediate: true })
 
-const tagStyleMap = {
-  'Art': { color: 'primary', variant: 'solid' },
-  'Assets': { color: 'success', variant: 'solid' },
-  'Coding': { color: 'warning', variant: 'solid' },
-  'Portfolio': { color: 'error', variant: 'solid' },
-  'Tool': { color: 'primary', variant: 'subtle' },
-  'Typography': { color: 'success', variant: 'subtle' },
-  'UI/UX': { color: 'warning', variant: 'subtle' },
-  'Webdev': { color: 'error', variant: 'subtle' },
-} as const
-
 const tagData = computed<BadgeProps>(() => {
-  const style = tagStyleMap[props.tag as keyof typeof tagStyleMap] || { color: 'default', variant: 'subtle' }
-  return {
-    label: props.tag as string,
-    color: style.color,
-    variant: style.variant,
-  }
+  return getTagStyle(props.tag)
 })
 </script>
