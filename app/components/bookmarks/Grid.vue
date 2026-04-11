@@ -3,7 +3,7 @@
     <BookmarksEntry
       v-for="bm in bookmarksToShow" :key="bm.id" :title="bm.title"
       :description="bm.og_description || ''"
-      :image="bm.og_image || '/img/og_fallback.png'" :date="bm.created_at" :url="bm.url" />
+      :image="bm.og_image || '/img/og_fallback.png'" :date="bm.created_at" :url="bm.url" :tag="bm.tag" />
   </UBlogPosts>
 </template>
 
