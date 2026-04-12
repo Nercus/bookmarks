@@ -35,3 +35,9 @@ const tagData = computed<BadgeProps>(() => {
   return getTagStyle(props.tag)
 })
 </script>
+
+<style>
+.ease-in-out-custom {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+</style>

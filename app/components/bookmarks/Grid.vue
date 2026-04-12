@@ -2,8 +2,8 @@
   <UBlogPosts>
     <BookmarksEntry
       v-for="bm in bookmarksToShow" :key="bm.id" :title="bm.title"
-      :description="bm.og_description || ''"
-      :image="bm.og_image || '/img/og_fallback.png'" :date="bm.created_at" :url="bm.url" :tag="bm.tag" />
+      :description="bm.description || ''"
+      :image="bm.image || '/img/og_fallback.png'" :date="bm.created_at" :url="bm.url" :tag="bm.tag" />
   </UBlogPosts>
   <UEmpty
     v-if="!loading && bookmarksToShow.length === 0" title="No bookmarks found" icon="i-lucide-frown"
