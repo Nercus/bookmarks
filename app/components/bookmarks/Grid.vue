@@ -52,7 +52,6 @@ async function searchBookmarks() {
     query_text: props.search,
     query_embedding: embedding, // array of numbers
     match_count: 10,
-    score_threshold: 0.25,
   })
 
   if (error) {
@@ -61,7 +60,7 @@ async function searchBookmarks() {
     return
   }
 
-  searchData.value = data
+  searchData.value = (data || []).filter(result => result.score > 0.1)
   loading.value = false
 }
 
