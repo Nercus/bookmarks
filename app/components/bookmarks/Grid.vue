@@ -1,10 +1,10 @@
 <template>
-  <UBlogPosts>
+  <div class="gap-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
     <BookmarksEntry
       v-for="bm in bookmarksToShow" :key="bm.id" :title="bm.title"
       :description="bm.description || ''"
       :image="bm.image || '/img/og_fallback.png'" :date="bm.created_at" :url="bm.url" :tag="bm.tag" />
-  </UBlogPosts>
+  </div>
   <UEmpty
     v-if="!loading && bookmarksToShow.length === 0" title="No bookmarks found" icon="i-lucide-frown"
     description="Try adjusting your search or filter to find what you're looking for." />
