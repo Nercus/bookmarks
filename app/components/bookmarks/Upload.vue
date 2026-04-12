@@ -1,6 +1,6 @@
 <template>
   <UModal v-model:open="modalOpen" title="Bookmark Upload">
-    <UButton label="Upload Bookmark" color="neutral" variant="soft" icon="lucide:plus" @click="modalOpen = true" />
+    <UButton color="neutral" variant="soft" icon="lucide:plus" @click="modalOpen = true" />
 
     <template #body>
       <div class="flex flex-col justify-center items-center gap-2 w-full">
