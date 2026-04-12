@@ -1,5 +1,5 @@
 <template>
-  <div class="gap-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
+  <div class="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
     <BookmarksEntry
       v-for="bm in bookmarksToShow" :key="bm.id" :title="bm.title"
       :description="bm.description || ''"

@@ -1,5 +1,26 @@
 <template>
-  <UBlogPost :to="props.url" target="_blank" :title="props.title" :description="props.description" :image="imageUrl" :date="props.date" :badge="tagData" />
+  <USlideover
+    v-model:open="isOpen"
+    :ui="{ content: 'rounded-l-lg' }">
+    <UBlogPost
+      to="#" :title="props.title" :description="props.description" :image="imageUrl" :date="props.date" :badge="tagData" />
+    <template #content>
+      <UButton
+        icon="lucide:x" color="neutral" variant="subtle"
+        class="top-2 right-2 z-50 absolute" @click="isOpen = false" />
+      <UBlogPost
+        :title="props.title" :description="props.description" :image="imageUrl" :date="props.date"
+        :badge="tagData" :ui="{ root: 'h-full min-h-full' }">
+        <template #footer>
+          <div class="flex justify-end p-2 w-full">
+            <UButton :href="props.url" target="_blank" color="neutral" variant="subtle" icon="lucide:external-link">
+              Visit Site
+            </UButton>
+          </div>
+        </template>
+      </UBlogPost>
+    </template>
+  </USlideover>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +34,8 @@ const props = defineProps<{
   url: string
   tag: string
 }>()
+
+const isOpen = ref(false)
 
 const { getTagStyle } = useTag()
 
@@ -28,6 +51,7 @@ watch(() => props.image, (src) => {
   img.onerror = () => {
     imageUrl.value = fallback
   }
+
   img.src = src
 }, { immediate: true })
 
