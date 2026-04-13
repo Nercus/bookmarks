@@ -33,4 +33,16 @@ export default defineNuxtConfig({
     key: process.env.SUPABASE_KEY,
     redirect: false,
   },
+  vite: {
+    optimizeDeps: {
+      include: [
+        'tiptap-extension-code-block-shiki',
+        '@nuxt/ui > prosemirror-state',
+        '@nuxt/ui > prosemirror-transform',
+        '@nuxt/ui > prosemirror-model',
+        '@nuxt/ui > prosemirror-view',
+        '@nuxt/ui > prosemirror-gapcursor',
+      ],
+    },
+  },
 })

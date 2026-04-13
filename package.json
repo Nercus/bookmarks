@@ -20,7 +20,10 @@
     "@vueuse/nuxt": "14.2.1",
     "eslint-plugin-format": "^2.0.1",
     "nuxt": "^4.4.2",
-    "tailwindcss": "^4.2.2"
+    "shiki": "^4.0.2",
+    "slugify": "^1.6.9",
+    "tailwindcss": "^4.2.2",
+    "tiptap-extension-code-block-shiki": "^1.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^8.0.0",
