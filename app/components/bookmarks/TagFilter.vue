@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center gap-2 overflow-x-auto">
+  <div class="flex flex-row items-center gap-2 px-2 overflow-x-auto">
     <UBadge
       v-for="option in tagOptions" :key="option.value" :color="option.color" :variant="option.variant"
       :class="selectedTag === option.value ? 'opacity-100' : 'opacity-40'" class="cursor-pointer" @click="selectTag(option.value)">

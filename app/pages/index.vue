@@ -11,10 +11,10 @@
             <AuthLoginButton />
           </template>
         </UDashboardNavbar>
-        <UDashboardToolbar>
+        <UDashboardToolbar :ui="{ root: 'px-0' }">
           <template #default>
             <div class="flex flex-row flex-wrap justify-between items-center gap-2 py-1 w-full h-full">
-              <BookmarksSearchBar v-model:search="searchString" :loading="loading" />
+              <BookmarksSearchBar v-model:search="searchString" :loading="loading" class="px-2" />
               <BookmarksTagFilter v-model="tagFilter" />
             </div>
           </template>
