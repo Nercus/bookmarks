@@ -16,6 +16,7 @@
     "@iconify-json/lucide": "^1.2.101",
     "@iconify-json/simple-icons": "^1.2.76",
     "@nuxt/ui": "^4.6.0",
+    "@nuxtjs/mdc": "0.21.1",
     "@nuxtjs/supabase": "2.0.4",
     "@vueuse/nuxt": "14.2.1",
     "eslint-plugin-format": "^2.0.1",

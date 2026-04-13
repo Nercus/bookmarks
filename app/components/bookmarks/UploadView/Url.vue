@@ -1,14 +1,7 @@
 <template>
   <div class="flex flex-col justify-center items-center gap-2 w-full">
     <UInput v-model="url" class="w-full" :loading="loading" />
-
-    <USelect v-model="tag" :items="tagOptions" value-key="value" class="w-full">
-      <template #item="{ item }">
-        <UBadge :color="item.color" :variant="item.variant">
-          {{ item.label }}
-        </UBadge>
-      </template>
-    </USelect>
+    <BookmarksUploadViewTagSelect v-model="tag" />
     <UButton
       icon="lucide:upload" color="neutral" variant="solid" :disabled="uploadDisabled || loading" label="Upload"
       @click="uploadBookmark" />
@@ -68,11 +61,4 @@ async function uploadBookmark() {
   loading.value = false
   modalOpen.value = false
 }
-
-const tagOptions = Object.keys(tagStyleMap).map(key => ({
-  label: key,
-  value: key,
-  color: tagStyleMap[key as keyof typeof tagStyleMap].color,
-  variant: tagStyleMap[key as keyof typeof tagStyleMap].variant,
-}))
 </script>

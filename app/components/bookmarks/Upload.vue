@@ -1,5 +1,5 @@
 <template>
-  <UModal v-model:open="modalOpen" title="Bookmark Upload" :ui="{ content: 'max-w-2xl' }">
+  <UModal v-model:open="modalOpen" title="Bookmark Upload" :ui="{ content: 'max-w-4xl' }">
     <UButton color="neutral" variant="soft" icon="lucide:plus" @click="modalOpen = true" />
 
     <template #body>

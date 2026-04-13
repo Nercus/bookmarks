@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/supabase',
+    '@nuxtjs/mdc',
   ],
   devtools: {
     enabled: true,
@@ -42,6 +43,7 @@ export default defineNuxtConfig({
         '@nuxt/ui > prosemirror-model',
         '@nuxt/ui > prosemirror-view',
         '@nuxt/ui > prosemirror-gapcursor',
+        'slugify', // CJS
       ],
     },
   },

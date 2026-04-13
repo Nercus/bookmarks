@@ -2,87 +2,78 @@
   <UEditor
     v-slot="{ editor }"
     v-model="value"
+    v-bind="$attrs"
     content-type="markdown"
-    class="border border-muted rounded w-full grow"
+    class="border border-muted rounded w-full h-96 overflow-y-auto"
     :ui="{ base: 'p-8 sm:px-16 py-13.5' }"
-    placeholder="Start typing..."
-    :starter-kit="{ codeBlock: false }"
-    :extensions="[
-      CodeBlockShiki.configure({
-        defaultTheme: 'material-theme',
-        themes: {
-          light: 'material-theme-lighter',
-          dark: 'material-theme-palenight',
-        },
-      }),
-    ]">
-    <UEditorToolbar :editor="editor" :items="items" layout="fixed" class="border-muted border-b" />
-    <UEditorDragHandle :editor="editor" />
+    enable-paste-rules>
+    <UEditorSuggestionMenu :editor="editor" :items="items" :append-to="appendToBody" />
   </UEditor>
 </template>
 
 <script setup lang="ts">
-import type { EditorToolbarItem } from '@nuxt/ui'
-import { CodeBlockShiki } from 'tiptap-extension-code-block-shiki'
+import type { EditorSuggestionMenuItem } from '@nuxt/ui'
 
 const value = defineModel({
   type: String,
   default: '',
 })
-const items: EditorToolbarItem[][] = [
+
+const appendToBody = import.meta.client ? () => document.body : undefined
+
+const items: EditorSuggestionMenuItem[][] = [
   [
     {
-      icon: 'i-lucide-heading',
-      tooltip: { text: 'Headings' },
-      content: {
-        align: 'start',
-      },
-      items: [
-        {
-          kind: 'heading',
-          level: 1,
-          icon: 'i-lucide-heading-1',
-          label: 'Heading 1',
-        },
-        {
-          kind: 'heading',
-          level: 2,
-          icon: 'i-lucide-heading-2',
-          label: 'Heading 2',
-        },
-      ],
+      type: 'label',
+      label: 'Text',
+    },
+    {
+      kind: 'paragraph',
+      label: 'Paragraph',
+      icon: 'i-lucide-type',
+    },
+    {
+      kind: 'heading',
+      level: 1,
+      label: 'Heading 1',
+      icon: 'i-lucide-heading-1',
     },
   ],
   [
     {
-      kind: 'mark',
-      mark: 'bold',
-      icon: 'i-lucide-bold',
-      tooltip: { text: 'Bold' },
+      type: 'label',
+      label: 'Lists',
     },
     {
-      kind: 'mark',
-      mark: 'italic',
-      icon: 'i-lucide-italic',
-      tooltip: { text: 'Italic' },
+      kind: 'bulletList',
+      label: 'Bullet List',
+      icon: 'i-lucide-list',
     },
     {
-      kind: 'mark',
-      mark: 'underline',
-      icon: 'i-lucide-underline',
-      tooltip: { text: 'Underline' },
+      kind: 'orderedList',
+      label: 'Numbered List',
+      icon: 'i-lucide-list-ordered',
+    },
+  ],
+  [
+    {
+      type: 'label',
+      label: 'Insert',
     },
     {
-      kind: 'mark',
-      mark: 'strike',
-      icon: 'i-lucide-strikethrough',
-      tooltip: { text: 'Strikethrough' },
+      kind: 'blockquote',
+      label: 'Blockquote',
+      icon: 'i-lucide-text-quote',
     },
     {
-      kind: 'mark',
-      mark: 'code',
-      icon: 'i-lucide-code',
-      tooltip: { text: 'Code' },
+      kind: 'codeBlock',
+      label: 'Code Block',
+      icon: 'i-lucide-square-code',
+    },
+    {
+      kind: 'horizontalRule',
+      label: 'Divider',
+      icon: 'i-lucide-separator-horizontal',
     },
   ],
 ]

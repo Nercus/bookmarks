@@ -3,7 +3,7 @@
     v-model:open="isOpen"
     :ui="{ content: 'rounded-l-lg' }">
     <UBlogPost
-      to="#" :title="props.title" :description="props.description" :image="imageUrl" :date="props.date" :badge="tagData" />
+      to="#" :title="props.title" :image="imageUrl" :date="props.date" :badge="tagData" />
     <template #content>
       <UButton
         icon="lucide:x" color="neutral" variant="subtle"
@@ -11,9 +11,14 @@
       <UBlogPost
         :title="props.title" :description="props.description" :image="imageUrl" :date="props.date"
         :badge="tagData" :ui="{ root: 'h-full min-h-full' }">
+        <template #description>
+          <MDC v-if="content" :value="content" />
+          <span v-else class="mt-1 text-base text-pretty">{{ props.description }}</span>
+        </template>
+
         <template #footer>
           <div class="flex justify-end p-2 w-full">
-            <UButton :href="props.url" target="_blank" color="neutral" variant="subtle" icon="lucide:external-link">
+            <UButton v-if="props.url" :href="props.url" target="_blank" color="neutral" variant="subtle" icon="lucide:external-link">
               Visit Site
             </UButton>
           </div>
@@ -31,8 +36,9 @@ const props = defineProps<{
   description: string
   image: string
   date: string
-  url: string
+  url: string | null
   tag: string
+  type: string
 }>()
 
 const isOpen = ref(false)
@@ -57,6 +63,16 @@ watch(() => props.image, (src) => {
 
 const tagData = computed<BadgeProps>(() => {
   return getTagStyle(props.tag)
+})
+
+const supabase = useSupabaseClient()
+
+const { data: content } = useAsyncData(props.title, async () => {
+  if (props.type === 'link') {
+    return
+  }
+  const { data } = await supabase.from('bookmark_chunks').select('content').eq('title', props.title).single()
+  return data?.content
 })
 </script>
 

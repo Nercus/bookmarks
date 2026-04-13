@@ -21,7 +21,8 @@ export interface Database {
           embedding: number[] | null
           fts: unknown
           id: number
-          url: string
+          title: string | null
+          url?: string
         }
         Insert: {
           chunk_index: number
@@ -29,7 +30,8 @@ export interface Database {
           embedding?: number[] | null
           fts?: unknown
           id?: number
-          url: string
+          title?: string | null
+          url?: string
         }
         Update: {
           chunk_index?: number
@@ -37,15 +39,16 @@ export interface Database {
           embedding?: number[] | null
           fts?: unknown
           id?: number
+          title?: string | null
           url?: string
         }
         Relationships: [
           {
-            foreignKeyName: 'bookmark_chunks_url_fkey'
-            columns: ['url']
+            foreignKeyName: 'bookmark_chunks_title_fkey'
+            columns: ['title']
             isOneToOne: false
             referencedRelation: 'bookmarks'
-            referencedColumns: ['url']
+            referencedColumns: ['title']
           },
         ]
       }
@@ -53,29 +56,35 @@ export interface Database {
         Row: {
           created_at: string
           description: string | null
+          fts: unknown
           id: number
           image: string | null
           tag: string
           title: string
-          url: string
+          type: string
+          url: string | null
         }
         Insert: {
           created_at?: string
           description?: string | null
+          fts?: unknown
           id?: number
           image?: string | null
           tag: string
           title: string
-          url: string
+          type?: string
+          url?: string | null
         }
         Update: {
           created_at?: string
           description?: string | null
+          fts?: unknown
           id?: number
           image?: string | null
           tag?: string
           title?: string
-          url?: string
+          type?: string
+          url?: string | null
         }
         Relationships: []
       }
@@ -84,34 +93,19 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      hybrid_search:
-        | {
-          Args: {
-            match_count?: number
-            query_embedding: number[]
-            query_text: string
-          }
-          Returns: {
-            content: string
-            score: number
-            title: string
-            url: string
-          }[]
+      hybrid_search: {
+        Args: {
+          match_count: number
+          query_embedding: number[]
+          query_text: string
         }
-        | {
-          Args: {
-            match_count?: number
-            query_embedding: number[]
-            query_text: string
-            score_threshold?: number
-          }
-          Returns: {
-            content: string
-            score: number
-            title: string
-            url: string
-          }[]
-        }
+        Returns: {
+          content: string
+          score: number
+          title: string
+          url: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
