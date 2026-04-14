@@ -68,11 +68,8 @@ async function uploadImage(): Promise<string | null> {
     console.error(error)
     return null
   }
-  const { data: { publicUrl } } = supabase.storage
-    .from('og_images')
-    .getPublicUrl(fileName)
 
-  return publicUrl
+  return `/og_images/${fileName}`
 }
 
 async function uploadNote() {
