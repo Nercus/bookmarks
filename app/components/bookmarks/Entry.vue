@@ -38,7 +38,7 @@ import type { BadgeProps } from '@nuxt/ui'
 const props = defineProps<{
   title: string
   description: string
-  image: string
+  image: string | null
   date: string
   url: string | null
   tag: string
@@ -50,7 +50,6 @@ const isOpen = ref(false)
 const { getTagStyle } = useTag()
 
 const fallback = '/img/og_fallback.png'
-const imageUrl = ref(props.image)
 const hostName = computed(() => {
   if (!import.meta.client) {
     return 'https://bookmark-images.nerc.dev'
@@ -69,18 +68,12 @@ const hostName = computed(() => {
   return `https://bookmark-images.${domainAndTld}`
 })
 
-watch(() => props.image, (src) => {
-  if (!import.meta.client) return
-  const img = new window.Image()
-  img.onload = () => {
-    imageUrl.value = `${hostName.value}${src}`
+const imageUrl = computed(() => {
+  if (!props.image) {
+    return fallback
   }
-  img.onerror = () => {
-    imageUrl.value = fallback
-  }
-
-  img.src = `${hostName.value}${src}`
-}, { immediate: true })
+  return `${hostName.value}${props.image}`
+})
 
 const tagData = computed<BadgeProps>(() => {
   return getTagStyle(props.tag)

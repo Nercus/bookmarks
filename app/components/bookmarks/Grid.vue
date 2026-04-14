@@ -4,7 +4,7 @@
       v-for="bm in bookmarksToShow"
       :key="bm.id" :type="bm.type" :title="bm.title"
       :description="bm.description || ''"
-      :image="bm.image || '/img/og_fallback.png'" :date="bm.created_at" :url="bm.url" :tag="bm.tag" />
+      :image="bm.image" :date="bm.created_at" :url="bm.url" :tag="bm.tag" />
   </div>
   <UEmpty
     v-if="!loading && bookmarksToShow.length === 0" title="No bookmarks found" icon="i-lucide-frown"
