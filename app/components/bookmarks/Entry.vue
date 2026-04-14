@@ -3,7 +3,11 @@
     v-model:open="isOpen"
     :ui="{ content: 'rounded-l-lg' }">
     <UBlogPost
-      to="#" :title="props.title" :image="imageUrl" :date="props.date" :badge="tagData" />
+      to="#" :title="props.title" :image="{
+        src: imageUrl,
+        alt: props.title,
+        loading: 'lazy',
+      }" :date="props.date" :badge="tagData" />
     <template #content>
       <UButton
         icon="lucide:x" color="neutral" variant="subtle"
