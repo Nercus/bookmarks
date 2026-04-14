@@ -51,22 +51,35 @@ const { getTagStyle } = useTag()
 
 const fallback = '/img/og_fallback.png'
 const imageUrl = ref(props.image)
-const location = useBrowserLocation()
-console.log(location.value)
-// const hostName = window?.location.hostname === 'localhost' ? 'bookmarks.nerc.dev' : window?.location.hostname
-// const strippedHostName = hostName.replace('bookmarks.', '')
+const hostName = computed(() => {
+  if (!import.meta.client) {
+    return 'https://bookmark-images.nerc.dev'
+  }
+
+  const hostname = window.location.hostname
+  if (hostname === 'localhost') {
+    return 'https://bookmark-images.nerc.dev'
+  }
+
+  const hostParts = hostname.split('.').filter(Boolean)
+  const domainAndTld = hostParts.length >= 2
+    ? hostParts.slice(-2).join('.')
+    : hostname
+
+  return `https://bookmark-images.${domainAndTld}`
+})
 
 watch(() => props.image, (src) => {
   if (!import.meta.client) return
   const img = new window.Image()
   img.onload = () => {
-    imageUrl.value = src
+    imageUrl.value = `${hostName.value}${src}`
   }
   img.onerror = () => {
     imageUrl.value = fallback
   }
 
-  img.src = src
+  img.src = `${hostName.value}${src}`
 }, { immediate: true })
 
 const tagData = computed<BadgeProps>(() => {
