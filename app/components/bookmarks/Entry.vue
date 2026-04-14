@@ -4,7 +4,7 @@
     :ui="{ content: 'rounded-l-lg' }">
     <UBlogPost
       to="#" :title="props.title" :image="{
-        src: imageUrl,
+        src: displayImageUrl,
         alt: props.title,
         loading: 'lazy',
       }" :date="props.date" :badge="tagData" />
@@ -13,7 +13,7 @@
         icon="lucide:x" color="neutral" variant="subtle"
         class="top-2 right-2 z-50 absolute" @click="isOpen = false" />
       <UBlogPost
-        :title="props.title" :description="props.description" :image="imageUrl" :date="props.date"
+        :title="props.title" :description="props.description" :image="displayImageUrl" :date="props.date"
         :badge="tagData" :ui="{ root: 'h-full min-h-full' }">
         <template #description>
           <MDC v-if="content" :value="content" />
@@ -74,6 +74,33 @@ const imageUrl = computed(() => {
   }
   return `${hostName.value}${props.image}`
 })
+
+const displayImageUrl = ref(fallback)
+let imageLoadCheckId = 0
+
+watch(imageUrl, (nextUrl) => {
+  if (!import.meta.client || nextUrl === fallback) {
+    displayImageUrl.value = nextUrl
+    return
+  }
+
+  const checkId = ++imageLoadCheckId
+  const image = new Image()
+
+  image.onload = () => {
+    if (checkId === imageLoadCheckId) {
+      displayImageUrl.value = nextUrl
+    }
+  }
+
+  image.onerror = () => {
+    if (checkId === imageLoadCheckId) {
+      displayImageUrl.value = fallback
+    }
+  }
+
+  image.src = nextUrl
+}, { immediate: true })
 
 const tagData = computed<BadgeProps>(() => {
   return getTagStyle(props.tag)
