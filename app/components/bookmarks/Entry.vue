@@ -51,6 +51,10 @@ const { getTagStyle } = useTag()
 
 const fallback = '/img/og_fallback.png'
 const imageUrl = ref(props.image)
+const location = useBrowserLocation()
+console.log(location.value)
+// const hostName = window?.location.hostname === 'localhost' ? 'bookmarks.nerc.dev' : window?.location.hostname
+// const strippedHostName = hostName.replace('bookmarks.', '')
 
 watch(() => props.image, (src) => {
   if (!import.meta.client) return
