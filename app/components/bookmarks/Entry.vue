@@ -110,7 +110,7 @@ const supabase = useSupabaseClient()
 
 const { data: content } = useAsyncData(props.title, async () => {
   if (props.type === 'link') {
-    return
+    return null
   }
   const { data } = await supabase.from('bookmark_chunks').select('content').eq('title', props.title).single()
   return data?.content
