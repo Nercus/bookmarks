@@ -1,30 +1,8 @@
 <template>
-  <UDashboardGroup>
-    <UDashboardPanel>
-      <template #header>
-        <UDashboardNavbar title="Bookmarks" :toggle="false">
-          <template #leading>
-            <AppLogo class="size-10" />
-          </template>
-          <template #right>
-            <UColorModeButton />
-            <AuthLoginButton />
-          </template>
-        </UDashboardNavbar>
-        <UDashboardToolbar :ui="{ root: 'px-0' }">
-          <template #default>
-            <div class="flex flex-row flex-wrap justify-between items-center gap-2 py-1 w-full h-full">
-              <BookmarksSearchBar v-model:search="searchString" :loading="loading" class="px-2" />
-              <BookmarksTagFilter v-model="tagFilter" />
-            </div>
-          </template>
-        </UDashboardToolbar>
-      </template>
-      <template #body>
-        <BookmarksGrid v-model="loading" :search="searchString" :tag-filter="tagFilter" />
-      </template>
-    </UDashboardPanel>
-  </UDashboardGroup>
+  <div class="">
+    <AppToolbar v-model:loading="loading" v-model:search="searchString" v-model:tag-filter="tagFilter" />
+    <BookmarksGrid v-model="loading" :search="searchString" :tag-filter="tagFilter" />
+  </div>
 </template>
 
 <script setup lang="ts">
