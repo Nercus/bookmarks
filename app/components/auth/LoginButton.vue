@@ -29,7 +29,7 @@ async function signInWithOtp() {
   const { error } = await supabase.auth.signInWithOtp({
     email: email.value,
     options: {
-      emailRedirectTo: 'http://localhost:3000',
+      emailRedirectTo: window.location.origin,
     },
   })
   popoverOpen.value = false
