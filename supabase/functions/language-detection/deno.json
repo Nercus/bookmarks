@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "@vscode/vscode-languagedetection": "npm:@vscode/vscode-languagedetection",
+  }
+}

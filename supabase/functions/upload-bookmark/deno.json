@@ -1,0 +1,12 @@
+{
+  "imports": {
+    "@supabase/functions-js": "jsr:@supabase/functions-js",
+    "@mozilla/readability": "npm:@mozilla/readability",
+    "@supabase/supabase-js": "jsr:@supabase/supabase-js",
+    "@langchain/textsplitters": "npm:@langchain/textsplitters",
+    "open-graph-scraper": "npm:open-graph-scraper",
+    "slugify": "npm:slugify",
+    "throttled-queue": "npm:throttled-queue",
+    "image-meta": "npm:image-meta"
+  }
+}
