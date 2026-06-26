@@ -3,6 +3,7 @@
     v-model:open="isOpen"
     :ui="{ content: 'rounded-l-lg' }">
     <UBlogPost
+      class="h-110"
       to="#" :title="props.title" :image="{
         src: displayImageUrl,
         alt: props.title,
@@ -50,29 +51,12 @@ const isOpen = ref(false)
 const { getTagStyle } = useTag()
 
 const fallback = '/img/og_fallback.png'
-const hostName = computed(() => {
-  if (!import.meta.client) {
-    return 'https://bookmark-images.nerc.dev'
-  }
-
-  const hostname = window.location.hostname
-  if (hostname === 'localhost') {
-    return 'https://bookmark-images.nerc.dev'
-  }
-
-  const hostParts = hostname.split('.').filter(Boolean)
-  const domainAndTld = hostParts.length >= 2
-    ? hostParts.slice(-2).join('.')
-    : hostname
-
-  return `https://bookmark-images.${domainAndTld}`
-})
 
 const imageUrl = computed(() => {
   if (!props.image) {
     return fallback
   }
-  return `${hostName.value}${props.image}`
+  return `https://bookmark-images.nerc.dev/${props.image}`
 })
 
 const displayImageUrl = ref(imageUrl.value)
@@ -113,13 +97,12 @@ const { data: content } = useAsyncData(props.title, async () => {
   if (props.type === 'link') {
     return null
   }
-  const { data } = await supabase.from('bookmark_chunks').select('content').eq('title', props.title).single()
+  const { data } = await supabase
+    .from('bookmark_chunks')
+    .select('content')
+    .eq('title', props.title)
+    .limit(1)
+    .maybeSingle()
   return data?.content ?? null
-})
+}, { lazy: true })
 </script>
-
-<style>
-.ease-in-out-custom {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-</style>

@@ -19,6 +19,7 @@
     "@nuxt/ui": "^4.9.0",
     "@nuxtjs/mdc": "0.22.0",
     "@nuxtjs/supabase": "2.0.9",
+    "@tanstack/vue-virtual": "^3.13.29",
     "@vueuse/nuxt": "14.3.0",
     "eslint-plugin-format": "^2.0.1",
     "nuxt": "^4.4.8",
