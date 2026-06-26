@@ -13,22 +13,22 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.9.0",
-    "@iconify-json/lucide": "^1.2.102",
-    "@iconify-json/simple-icons": "^1.2.78",
-    "@nuxt/ui": "^4.6.1",
-    "@nuxtjs/mdc": "0.21.1",
-    "@nuxtjs/supabase": "2.0.5",
-    "@vueuse/nuxt": "14.2.1",
+    "@iconify-json/lucide": "^1.2.114",
+    "@iconify-json/simple-icons": "^1.2.87",
+    "@nuxt/ui": "^4.9.0",
+    "@nuxtjs/mdc": "0.22.0",
+    "@nuxtjs/supabase": "2.0.9",
+    "@vueuse/nuxt": "14.3.0",
     "eslint-plugin-format": "^2.0.1",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.4.8",
     "slugify": "^1.6.9",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^8.2.0",
-    "@nuxt/eslint": "^1.15.2",
-    "eslint": "^10.2.0",
-    "typescript": "^6.0.2",
-    "vue-tsc": "^3.2.6"
+    "@antfu/eslint-config": "^9.1.0",
+    "@nuxt/eslint": "^1.16.0",
+    "eslint": "^10.5.0",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.5"
   }
 }
