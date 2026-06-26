@@ -75,7 +75,7 @@ const imageUrl = computed(() => {
   return `${hostName.value}${props.image}`
 })
 
-const displayImageUrl = ref(fallback)
+const displayImageUrl = ref(imageUrl.value)
 let imageLoadCheckId = 0
 
 watch(imageUrl, (nextUrl) => {
@@ -86,6 +86,7 @@ watch(imageUrl, (nextUrl) => {
 
   const checkId = ++imageLoadCheckId
   const image = new Image()
+  displayImageUrl.value = nextUrl
 
   image.onload = () => {
     if (checkId === imageLoadCheckId) {
