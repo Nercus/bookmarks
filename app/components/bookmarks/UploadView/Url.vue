@@ -56,7 +56,7 @@ async function uploadBookmark() {
       color: 'success',
     })
     url.value = ''
-    refreshNuxtData('all-bookmarks')
+    await refreshNuxtData('all-bookmarks')
   }
   loading.value = false
   modalOpen.value = false

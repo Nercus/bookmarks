@@ -99,15 +99,19 @@ async function uploadNote() {
       throw error
     }
 
-    await supabase.functions.invoke('chunk-insert', {
+    const { error: chunkError } = await supabase.functions.invoke('chunk-insert', {
       body: { title: title.value, content: content.value, chunk_index: 0 },
     })
+    if (chunkError) {
+      throw chunkError
+    }
 
     toast.add({
       title: 'Note uploaded',
       description: 'Your note has been uploaded successfully.',
       color: 'success',
     })
+    await refreshNuxtData('all-bookmarks')
   }
   catch (error) {
     toast.add({
