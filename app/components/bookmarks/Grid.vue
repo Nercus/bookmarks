@@ -34,7 +34,7 @@ const searchData = ref<SearchResult[] | null>(null)
 
 const { data: allBookmarks } = await useAsyncData('all-bookmarks', async () => {
   const { data } = await supabase.from('bookmarks').select('*').order('title', { ascending: true })
-  return data
+  return data ?? []
 })
 
 async function searchBookmarks() {

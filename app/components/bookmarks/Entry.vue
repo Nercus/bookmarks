@@ -114,7 +114,7 @@ const { data: content } = useAsyncData(props.title, async () => {
     return null
   }
   const { data } = await supabase.from('bookmark_chunks').select('content').eq('title', props.title).single()
-  return data?.content
+  return data?.content ?? null
 })
 </script>
 
