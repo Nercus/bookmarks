@@ -18,7 +18,6 @@ export interface Database {
         Row: {
           chunk_index: number
           content: string
-          embedding: number[] | null
           fts: unknown
           id: number
           title: string | null
@@ -27,7 +26,6 @@ export interface Database {
         Insert: {
           chunk_index: number
           content: string
-          embedding?: number[] | null
           fts?: unknown
           id?: number
           title?: string | null
@@ -36,7 +34,6 @@ export interface Database {
         Update: {
           chunk_index?: number
           content?: string
-          embedding?: number[] | null
           fts?: unknown
           id?: number
           title?: string | null
@@ -96,7 +93,6 @@ export interface Database {
       hybrid_search: {
         Args: {
           match_count: number
-          query_embedding: number[]
           query_text: string
         }
         Returns: {

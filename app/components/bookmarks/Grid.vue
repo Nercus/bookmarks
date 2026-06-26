@@ -37,21 +37,11 @@ const { data: allBookmarks } = await useAsyncData('all-bookmarks', async () => {
   return data
 })
 
-async function getEmbedding(text: string): Promise<number[]> {
-  const { data } = await supabase.functions.invoke('embed', {
-    body: { input: text },
-  })
-  return data.embedding as number[]
-}
-
 async function searchBookmarks() {
   loading.value = true
-  // Step 1: Get the embedding for the search query
-  const embedding = await getEmbedding(props.search)
 
   const { data, error } = await supabase.rpc('hybrid_search', {
     query_text: props.search,
-    query_embedding: embedding, // array of numbers
     match_count: 10,
   })
 
@@ -61,7 +51,7 @@ async function searchBookmarks() {
     return
   }
 
-  searchData.value = (data || []).filter(result => result.score > 0.1)
+  searchData.value = data || []
   loading.value = false
 }
 

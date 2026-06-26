@@ -99,7 +99,7 @@ async function uploadNote() {
       throw error
     }
 
-    await supabase.functions.invoke('embed-insert', {
+    await supabase.functions.invoke('chunk-insert', {
       body: { title: title.value, content: content.value, chunk_index: 0 },
     })
 
