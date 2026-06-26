@@ -93,10 +93,7 @@ const tagData = computed<BadgeProps>(() => {
 
 const supabase = useSupabaseClient()
 
-const { data: content } = useAsyncData(props.title, async () => {
-  if (props.type === 'link') {
-    return null
-  }
+const { data: content } = useAsyncData(`bookmark-content-${props.title}`, async () => {
   const { data } = await supabase
     .from('bookmark_chunks')
     .select('content')
@@ -104,5 +101,9 @@ const { data: content } = useAsyncData(props.title, async () => {
     .limit(1)
     .maybeSingle()
   return data?.content ?? null
-}, { lazy: true })
+}, {
+  lazy: true,
+  immediate: props.type !== 'link',
+  getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
+})
 </script>
