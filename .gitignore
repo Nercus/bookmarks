@@ -31,3 +31,5 @@ logs
 .env.keys
 .env.local
 .env.*.local
+
+.eslintcache
